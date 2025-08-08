@@ -1,0 +1,6 @@
+def matchingStrings(stringList, queries):
+    results = []
+    for q in queries:
+        count = stringList.count(q)  # count how many times q appears
+        results.append(count)
+    return results
