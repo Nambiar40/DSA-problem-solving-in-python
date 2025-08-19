@@ -1,0 +1,14 @@
+def getNode(llist, positionFromTail):
+    first = llist
+    second = llist
+
+    for _ in range(positionFromTail):
+        first = first.next
+
+
+    while first.next:
+        first = first.next
+        second = second.next
+
+    
+    return second.data
