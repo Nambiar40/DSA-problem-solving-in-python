@@ -1,0 +1,18 @@
+def topView(root):
+    hd_map = {}   # hd : (node_value, level)
+
+    def dfs(node, hd, level):   
+        if not node:
+            return
+        
+        
+        if hd not in hd_map or level < hd_map[hd][1]:
+            hd_map[hd] = (node.info, level)
+        
+        dfs(node.left, hd - 1, level + 1)
+        dfs(node.right, hd + 1, level + 1)
+
+    dfs(root, 0, 0)
+
+    for hd in sorted(hd_map.keys()):
+        print(hd_map[hd][0], end=" ")
