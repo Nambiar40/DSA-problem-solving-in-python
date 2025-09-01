@@ -1,0 +1,16 @@
+def decodeHuff(root, s):
+    ans = ""
+    curr = root
+
+    for bit in s:
+        if bit == '0':
+            curr = curr.left
+        else:
+            curr = curr.right
+
+        
+        if curr.left is None and curr.right is None:
+            ans += curr.data
+            curr = root
+
+    print(ans)
