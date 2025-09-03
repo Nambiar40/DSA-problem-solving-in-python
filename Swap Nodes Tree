@@ -1,0 +1,31 @@
+def swapNodes(indexes, queries):
+    tree = {i + 1: indexes[i] for i in range(len(indexes))}
+
+    def inorder(node, result):
+        if node == -1:
+            return
+        left, right = tree[node]
+        inorder(left, result)
+        result.append(node)
+        inorder(right, result)
+
+    def swap_at_depth(k):
+        q = deque([(1, 1)])
+        while q:
+            node, depth = q.popleft()
+            if node == -1:
+                continue
+            if depth % k == 0:
+                tree[node][0], tree[node][1] = tree[node][1], tree[node][0]
+            left, right = tree[node]
+            q.append((left, depth + 1))
+            q.append((right, depth + 1))
+
+    results = []
+    for k in queries:
+        swap_at_depth(k)
+        result = []
+        inorder(1, result)
+        results.append(result)
+
+    return results
