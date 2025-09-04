@@ -1,0 +1,25 @@
+stack = []
+    max_stack = []
+    result = []
+
+    for op in operations:
+        parts = op.split()
+
+        if parts[0] == "1":  # push
+            val = int(parts[1])
+            stack.append(val)
+            if not max_stack:
+                max_stack.append(val)
+            else:
+                max_stack.append(max(val, max_stack[-1]))
+
+        elif parts[0] == "2":  # pop
+            if stack:
+                stack.pop()
+                max_stack.pop()
+
+        elif parts[0] == "3":  # get max
+            if max_stack:
+                result.append(max_stack[-1])
+
+    return result
