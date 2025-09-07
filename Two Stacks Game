@@ -1,0 +1,25 @@
+def twoStacks(maxSum, a, b):
+    
+    sum_ = 0
+    count_a = 0
+    while count_a < len(a) and sum_ + a[count_a] <= maxSum:
+        sum_ += a[count_a]
+        count_a += 1
+
+    max_count = count_a
+    count_b = 0
+
+   
+    while count_b < len(b) and (count_a >= 0):
+        sum_ += b[count_b]
+        count_b += 1
+
+        
+        while sum_ > maxSum and count_a > 0:
+            count_a -= 1
+            sum_ -= a[count_a]
+
+        if sum_ <= maxSum:
+            max_count = max(max_count, count_a + count_b)
+
+    return max_count
