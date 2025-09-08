@@ -1,0 +1,27 @@
+def largestRectangle(h):
+    stack = []  
+    max_area = 0
+    i = 0
+    n = len(h)
+
+    while i < n:
+        
+        if not stack or h[i] >= h[stack[-1]]:
+            stack.append(i)
+            i += 1
+        else:
+            
+            top = stack.pop()
+            height = h[top]
+            
+            width = i if not stack else i - stack[-1] - 1
+            max_area = max(max_area, height * width)
+
+    
+    while stack:
+        top = stack.pop()
+        height = h[top]
+        width = i if not stack else i - stack[-1] - 1
+        max_area = max(max_area, height * width)
+
+    return max_area
