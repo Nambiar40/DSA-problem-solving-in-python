@@ -1,0 +1,36 @@
+def simpleTextEditor(operations):
+    s = ""             # our main string
+    stack = []         # to keep track of operations for undo
+
+    for op in operations:
+        parts = op.split()
+        t = int(parts[0])  # operation type
+
+        if t == 1:  # append
+            w = parts[1]
+            stack.append(("del", len(w)))  # store inverse operation
+            s += w
+
+        elif t == 2:  # delete
+            k = int(parts[1])
+            deleted = s[-k:]              # store what was deleted
+            stack.append(("add", deleted))
+            s = s[:-k]
+
+        elif t == 3:  # print
+            k = int(parts[1])
+            print(s[k-1])  # 1-indexed
+
+        elif t == 4:  # undo
+            last = stack.pop()
+            if last[0] == "del":   # undo append
+                s = s[:-last[1]]
+            elif last[0] == "add": # undo delete
+                s += last[1]
+
+
+# ------- Driver code -------
+if __name__ == "__main__":
+    Q = int(input().strip())
+    operations = [input().strip() for _ in range(Q)]
+    simpleTextEditor(operations)
