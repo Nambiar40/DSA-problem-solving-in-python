@@ -1,0 +1,42 @@
+def get_primes(limit):
+    """Generate the first 'limit' prime numbers."""
+    primes = []
+    num = 2
+    while len(primes) < limit:
+        is_prime = True
+        for p in primes:
+            if p * p > num:
+                break
+            if num % p == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(num)
+        num += 1
+    return primes
+
+
+def waiter(number, q):
+    primes = get_primes(q)
+    answer = []
+    stack = number[:]  # copy input
+
+    for i in range(q):
+        prime = primes[i]
+        A = []
+        B = []
+        while stack:
+            plate = stack.pop()  # pop from top
+            if plate % prime == 0:
+                A.append(plate)
+            else:
+                B.append(plate)
+        # Add A plates to answer (top to bottom means last-in first-out)
+        while A:
+            answer.append(A.pop())
+        # Next stack is B
+        stack = B
+    # After q iterations, dump remaining stack
+    while stack:
+        answer.append(stack.pop())
+    return answer
