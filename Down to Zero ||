@@ -1,0 +1,25 @@
+def downToZero(n):
+if n == 0:
+        return 0
+    visited = [False] * (n+1)
+    queue = deque([(n, 0)])  # (current_value, steps)
+    visited[n] = True
+
+    while queue:
+        cur, steps = queue.popleft()
+
+        if cur == 0:
+            return steps
+
+        # operation 2: cur - 1
+        if not visited[cur - 1]:
+            visited[cur - 1] = True
+            queue.append((cur - 1, steps + 1))
+
+        # operation 1: replace with max divisor
+        for i in range(2, int(cur**0.5) + 1):
+            if cur % i == 0:
+                nxt = max(i, cur // i)
+                if not visited[nxt]:
+                    visited[nxt] = True
+                    queue.append((nxt, steps + 1))
