@@ -1,0 +1,32 @@
+import heapq
+
+def process_queries(queries):
+    heap = []
+    present = set()
+    
+    for query in queries:
+        if query[0] == 1:   # insert
+            x = query[1]
+            heapq.heappush(heap, x)
+            present.add(x)
+        
+        elif query[0] == 2: # delete
+            x = query[1]
+            if x in present:
+                present.remove(x)
+        
+        else:  # query[0] == 3 -> print minimum
+            # Clean up heap top if deleted
+            while heap and heap[0] not in present:
+                heapq.heappop(heap)
+            if heap:
+                print(heap[0])
+
+# Example driver
+if __name__ == "__main__":
+    q = int(input().strip())
+    queries = []
+    for _ in range(q):
+        parts = list(map(int, input().split()))
+        queries.append(parts)
+    process_queries(queries)
