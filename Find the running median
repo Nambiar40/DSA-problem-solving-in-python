@@ -1,0 +1,31 @@
+def runningMedian(a):
+    lowers = []  # max heap (store negatives for max heap behavior)
+    highers = [] # min heap
+    medians = []
+
+    def add_number(number):
+        if not lowers or number < -lowers[0]:
+            heapq.heappush(lowers, -number)
+        else:
+            heapq.heappush(highers, number)
+
+    def rebalance():
+        if len(lowers) > len(highers) + 1:
+            heapq.heappush(highers, -heapq.heappop(lowers))
+        elif len(highers) > len(lowers) + 1:
+            heapq.heappush(lowers, -heapq.heappop(highers))
+
+    def get_median():
+        if len(lowers) == len(highers):
+            return (-lowers[0] + highers[0]) / 2.0
+        elif len(lowers) > len(highers):
+            return float(-lowers[0])
+        else:
+            return float(highers[0])
+
+    for number in a:
+        add_number(number)
+        rebalance()
+        medians.append(round(get_median(), 1))  # format to 1 decimal place
+
+    return medians
