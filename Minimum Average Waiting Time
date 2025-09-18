@@ -1,0 +1,27 @@
+def minimumAverage(customers):
+      # Sort customers by arrival time
+    customers.sort(key=lambda x: x[0])
+    
+    # Min-heap for available customers based on cooking time
+    heap = []
+    
+    time = 0  # current time
+    total_wait = 0
+    i = 0  # index for customers
+    n = len(customers)
+    
+    while i < n or heap:
+        # Add all customers who have arrived by current time
+        while i < n and customers[i][0] <= time:
+            heapq.heappush(heap, (customers[i][1], customers[i][0]))  # (cooking_time, arrival_time)
+            i += 1
+        
+        if heap:
+            cook_time, arrival = heapq.heappop(heap)
+            time += cook_time
+            total_wait += time - arrival
+        else:
+            # No one available, jump to next customer's arrival
+            time = customers[i][0]
+    
+    return total_wait // n
