@@ -1,0 +1,10 @@
+def diagonaldifference(arr):
+n = len(arr)
+    primary_sum = 0
+    secondary_sum = 0
+    
+    for i in range(n):
+        primary_sum += arr[i][i]              # left-to-right diagonal
+        secondary_sum += arr[i][n - 1 - i]    # right-to-left diagonal
+    
+    return abs(primary_sum - secondary_sum)
