@@ -1,0 +1,19 @@
+def getTotalX(a, b):
+    def lcm(x, y):
+        return x * y // math.gcd(x, y)
+    
+    lcm_a = a[0]
+    for num in a[1:]:
+        lcm_a = lcm(lcm_a, num)
+    
+    gcd_b = b[0]
+    for num in b[1:]:
+        gcd_b = math.gcd(gcd_b, num)
+    
+    count = 0
+    multiple = lcm_a
+    while multiple <= gcd_b:
+        if gcd_b % multiple == 0:
+            count += 1
+        multiple += lcm_a
+    return count
