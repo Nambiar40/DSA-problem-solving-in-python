@@ -1,0 +1,8 @@
+def bonAppetit(bill, k, b):
+    total_cost = sum(bill)
+    anna_share = (total_cost - bill[k]) 
+    
+    if b == anna_share:
+        print("Bon Appetit")
+    else:
+        print(b - anna_share)
