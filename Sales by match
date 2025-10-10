@@ -1,0 +1,4 @@
+from collections import Counter
+
+def sockMerchant(n, ar):
+    return sum(count // 2 for count in Counter(ar).values())
