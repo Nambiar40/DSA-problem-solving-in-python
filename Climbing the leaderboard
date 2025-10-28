@@ -1,0 +1,10 @@
+def climbingLeaderboard(ranked, player):
+    scores = sorted(list(set(ranked)), reverse=True)
+    result = []
+    i = len(scores) - 1  
+    for p in player:
+        while i >= 0 and p >= scores[i]:
+            i -= 1
+        result.append(i + 2)
+    
+    return result
