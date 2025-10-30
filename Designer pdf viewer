@@ -1,0 +1,4 @@
+def designerPdfViewer(h, word):
+    max_height = max(h[ord(c) - ord('a')] for c in word)
+    # Calculate area = tallest letter height * word length
+    return max_height * len(word)
