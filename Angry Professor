@@ -1,0 +1,6 @@
+def angryProfessor(k, a):
+    on_time = sum(1 for time in a if time <= 0)
+    if on_time < k:
+        return "YES"
+    else:
+        return "NO"
