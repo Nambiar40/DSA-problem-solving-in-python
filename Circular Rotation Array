@@ -1,0 +1,5 @@
+def circularArrayRotation(a, k, queries):
+    n = len(a)
+    k = k % n  # handle rotations greater than array length
+    rotated = a[-k:] + a[:-k]  # perform the right rotation
+    return [rotated[q] for q in queries]
