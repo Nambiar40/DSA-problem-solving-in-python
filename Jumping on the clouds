@@ -1,0 +1,10 @@
+def jumpingOnClouds(c, k):
+    energy = 100
+    n = len(c)
+    i = 0
+    while True:
+        i = (i + k) % n          # jump to next cloud
+        energy -= 1 + 2 * c[i]   # reduce energy
+        if i == 0:               # landed back at start
+            break
+    return energy
