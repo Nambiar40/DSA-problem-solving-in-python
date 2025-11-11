@@ -1,0 +1,23 @@
+def appendAndDelete(s, t, k):
+    # Find common prefix length
+    common = 0
+    for i in range(min(len(s), len(t))):
+        if s[i] == t[i]:
+            common += 1
+        else:
+            break
+
+    # Minimum operations
+    deletes = len(s) - common
+    appends = len(t) - common
+    min_ops = deletes + appends
+
+    # If we have enough operations to delete whole s and rebuild t
+    if k >= len(s) + len(t):
+        return "Yes"
+
+    # Check if we can perform exactly k operations
+    if k >= min_ops and (k - min_ops) % 2 == 0:
+        return "Yes"
+        
+    return "No"
