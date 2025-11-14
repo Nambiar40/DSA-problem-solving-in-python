@@ -1,0 +1,18 @@
+def cutTheSticks(arr):
+    arr.sort()
+    result = []
+    n = len(arr)
+    i = 0
+
+    while i < n:
+        # Number of sticks before the cut
+        result.append(n - i)
+        
+        # Current smallest stick
+        smallest = arr[i]
+        
+        # Skip all sticks equal to this smallest (they will be discarded)
+        while i < n and arr[i] == smallest:
+            i += 1
+
+    return result
