@@ -1,0 +1,19 @@
+def acmTeam(topic):
+    n = len(topic)
+    max_topics = 0
+    team_count = 0
+
+    for i in range(n):
+        for j in range(i + 1, n):
+
+            # Count topics known by team (i, j)
+            topics_known = bin(int(topic[i], 2) | int(topic[j], 2)).count('1')
+
+            # Update results
+            if topics_known > max_topics:
+                max_topics = topics_known
+                team_count = 1
+            elif topics_known == max_topics:
+                team_count += 1
+
+    return [max_topics, team_count]
