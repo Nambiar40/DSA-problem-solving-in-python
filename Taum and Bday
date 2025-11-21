@@ -1,0 +1,4 @@
+def taumBday(b, w, bc, wc, z):
+    bc_eff = min(bc, wc + z)   # cheapest way to get black gift
+    wc_eff = min(wc, bc + z)   # cheapest way to get white gift
+    return b * bc_eff + w * wc_eff
