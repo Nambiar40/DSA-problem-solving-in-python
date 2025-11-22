@@ -1,0 +1,12 @@
+def organizingContainers(container):
+    # Sum of each container's capacity (row sums)
+    container_capacity = [sum(row) for row in container]
+    
+    # Sum of each ball type (column sums)
+    type_count = [sum(col) for col in zip(*container)]
+    
+    # Sort and compare
+    if sorted(container_capacity) == sorted(type_count):
+        return "Possible"
+    else:
+        return "Impossible"
