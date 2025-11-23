@@ -1,0 +1,27 @@
+import math
+
+def encryption(s):
+    # 1. Remove spaces
+    s = s.replace(" ", "")
+    n = len(s)
+
+    # 2. Determine grid size
+    rows = math.floor(math.sqrt(n))
+    cols = math.ceil(math.sqrt(n))
+
+    # Ensure rows * cols >= n
+    if rows * cols < n:
+        rows += 1
+
+    # 3. Build encrypted text column-wise
+    result = []
+    for c in range(cols):
+        word = ""
+        for r in range(rows):
+            idx = r * cols + c
+            if idx < n:
+                word += s[idx]
+        result.append(word)
+
+    # 4. Join with spaces
+    return " ".join(result)
