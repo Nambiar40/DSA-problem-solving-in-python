@@ -1,0 +1,11 @@
+def minimumDistances(a):
+    last_index = {}
+    min_dist = float('inf')
+    
+    for i, val in enumerate(a):
+        if val in last_index:
+            dist = i - last_index[val]
+            min_dist = min(min_dist, dist)
+        last_index[val] = i
+    
+    return min_dist if min_dist != float('inf') else -1
