@@ -1,0 +1,34 @@
+def timeInWords(h, m):
+    nums = [
+        "zero","one","two","three","four","five","six","seven","eight","nine",
+        "ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen",
+        "seventeen","eighteen","nineteen","twenty","twenty one","twenty two",
+        "twenty three","twenty four","twenty five","twenty six",
+        "twenty seven","twenty eight","twenty nine"
+    ]
+    
+    # Case 1: Exactly on the hour
+    if m == 0:
+        return f"{nums[h]} o' clock"
+
+    # Quarter past
+    if m == 15:
+        return f"quarter past {nums[h]}"
+
+    # Half past
+    if m == 30:
+        return f"half past {nums[h]}"
+
+    # Quarter to
+    if m == 45:
+        return f"quarter to {nums[h + 1]}"
+
+    # Past the hour
+    if m < 30:
+        minute_word = "minute" if m == 1 else "minutes"
+        return f"{nums[m]} {minute_word} past {nums[h]}"
+
+    # To next hour
+    remaining = 60 - m
+    minute_word = "minute" if remaining == 1 else "minutes"
+    return f"{nums[remaining]} {minute_word} to {nums[h + 1]}"
